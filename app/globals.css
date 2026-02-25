@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-background text-foreground;
+}
+
+.gradient-bg {
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 60%),
+    radial-gradient(circle at top right, rgba(244, 63, 94, 0.08), transparent 55%),
+    radial-gradient(circle at bottom, rgba(129, 140, 248, 0.16), transparent 55%),
+    #020617;
+}
+
+.glass {
+  @apply bg-slate-900/60 border border-slate-700/60 backdrop-blur-xl;
+}
+
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
