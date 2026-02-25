@@ -54,8 +54,8 @@ export function ProjectCard({ repo, index }: ProjectCardProps) {
       className="h-full"
     >
       <Card className="group h-full">
-        <div className="relative h-40 w-full overflow-hidden border-b border-slate-800/70 bg-slate-900/60">
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-cyan-500/25 via-sky-500/10 to-transparent opacity-0 mix-blend-screen transition-opacity duration-500 group-hover:opacity-80" />
+        <div className="relative h-40 w-full overflow-hidden border-b border-slate-200 bg-slate-100">
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-cyan-200/20 via-sky-200/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-80" />
 
           <Image
             src={ogImage}
@@ -66,12 +66,12 @@ export function ProjectCard({ repo, index }: ProjectCardProps) {
             className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
           />
 
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/10 to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white via-white/60 to-transparent" />
         </div>
 
         <CardHeader className="space-y-3">
           <div className="flex items-center justify-between gap-2">
-            <div className="inline-flex items-center gap-2 rounded-full bg-slate-900/60 px-2.5 py-1 text-xs font-medium text-slate-300 ring-1 ring-slate-800/80">
+            <div className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-2.5 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-200">
               <span
                 className="h-2 w-2 rounded-full shadow-[0_0_10px]"
                 style={{ backgroundColor: languageColor }}
@@ -81,7 +81,7 @@ export function ProjectCard({ repo, index }: ProjectCardProps) {
               </span>
             </div>
 
-            <div className="flex items-center gap-1.5 text-[11px] text-slate-400">
+            <div className="flex items-center gap-1.5 text-[11px] text-slate-500">
               <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
               <span>Last vibed {lastUpdated}</span>
             </div>
@@ -90,7 +90,7 @@ export function ProjectCard({ repo, index }: ProjectCardProps) {
           <CardTitle className="flex items-center justify-between gap-2">
             <span className="truncate">{repo.name}</span>
             {repo.stargazers_count > 0 && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-slate-900/80 px-2 py-0.5 text-[11px] font-medium text-amber-300 ring-1 ring-amber-500/40">
+              <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-700 ring-1 ring-amber-200">
                 <span className="text-xs">★</span>
                 <span>{repo.stargazers_count}</span>
               </span>
@@ -108,8 +108,8 @@ export function ProjectCard({ repo, index }: ProjectCardProps) {
                   key={topic}
                   colorHex={topic.toLowerCase().includes("ai") ? "#22d3ee" : undefined}
                   className={cn(
-                    "border-slate-700/80 bg-slate-900/80 text-[11px] uppercase tracking-[0.12em]",
-                    topic.toLowerCase().includes("ai") && "text-cyan-300"
+                    "border-slate-200 bg-slate-50 text-[11px] uppercase tracking-[0.12em]",
+                    topic.toLowerCase().includes("ai") && "text-cyan-700"
                   )}
                 >
                   {topic}
@@ -119,11 +119,11 @@ export function ProjectCard({ repo, index }: ProjectCardProps) {
           )}
 
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <div className="flex flex-wrap gap-2 text-xs text-slate-400">
-              <span className="rounded-full bg-slate-900/80 px-2 py-1">
+            <div className="flex flex-wrap gap-2 text-xs text-slate-500">
+              <span className="rounded-full bg-slate-100 px-2 py-1">
                 Stars: {repo.stargazers_count}
               </span>
-              <span className="rounded-full bg-slate-900/80 px-2 py-1">
+              <span className="rounded-full bg-slate-100 px-2 py-1">
                 Forks: {repo.forks_count}
               </span>
             </div>

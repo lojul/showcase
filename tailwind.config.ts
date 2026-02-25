@@ -9,17 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#020617",
-        foreground: "#e5e7eb",
-        muted: "#020617",
+        background: "#ffffff",
+        foreground: "#0f172a",
+        muted: "#f3f4f6",
         accent: {
           DEFAULT: "#22d3ee",
           soft: "#0ea5e9"
         },
-        border: "#111827",
+        border: "#e5e7eb",
         card: {
-          DEFAULT: "#020617",
-          foreground: "#e5e7eb"
+          DEFAULT: "#ffffff",
+          foreground: "#0f172a"
         }
       },
       borderRadius: {
@@ -28,7 +28,7 @@ const config: Config = {
         sm: "0.375rem"
       },
       boxShadow: {
-        card: "0 18px 45px rgba(15,23,42,0.9)"
+        card: "0 18px 45px rgba(15,23,42,0.08)"
       }
     }
   },
