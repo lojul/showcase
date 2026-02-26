@@ -68,18 +68,11 @@ function MagneticSocialLink({
 export default function Personal() {
   return (
     <motion.main
-      className="space-y-24"
+      className="space-y-20"
       variants={VARIANTS_CONTAINER}
       initial="hidden"
       animate="visible"
     >
-      <motion.section
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <p className="text-zinc-600 dark:text-zinc-400">{HERO_BIO}</p>
-      </motion.section>
-
       <motion.section
         id="featured"
         variants={VARIANTS_SECTION}
@@ -137,6 +130,9 @@ export default function Personal() {
                     </span>
                   ))}
                 </div>
+                <p className="mt-2 text-xs uppercase tracking-wide text-zinc-400">
+                  Built with {project.builtWith}
+                </p>
                 <div className="mt-3 flex flex-wrap gap-3 text-sm">
                   <a
                     href={project.link}

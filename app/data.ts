@@ -5,6 +5,7 @@ type Project = {
   image: string
   imageAlt: string
   tech: string[]
+  builtWith: string
   github?: string
   id: string
 }
@@ -35,6 +36,7 @@ export const PROJECTS: Project[] = [
     image: '/featured/placeholder-hero.svg',
     imageAlt: 'Quick Poll Lightstreamer real-time polling app',
     tech: ['Railway', 'React', 'Next.js', 'Node.js', 'Lightstreamer', 'Postgres', 'Docker'],
+    builtWith: 'Claude',
     github: 'https://github.com/lojul/quick-poll-lightstreamer',
     id: 'quick-poll',
   },
@@ -45,6 +47,7 @@ export const PROJECTS: Project[] = [
     image: '/featured/placeholder-hero.svg',
     imageAlt: 'Applicant Tracking System dashboard',
     tech: ['Vercel', 'React', 'Next.js', 'Tailwind', 'shadcn', 'Postgres', 'Supabase'],
+    builtWith: 'Claude',
     github: 'https://github.com/lojul/applicant-tracking-three',
     id: 'applicant-tracking',
   },
@@ -64,6 +67,7 @@ export const PROJECTS: Project[] = [
       'Vercel Functions',
       'Job search UI',
     ],
+    builtWith: 'Claude',
     github: 'https://github.com/lojul/recruit-website',
     id: 'recruit-website',
   },
@@ -74,6 +78,7 @@ export const PROJECTS: Project[] = [
     image: '/featured/placeholder-hero.svg',
     imageAlt: 'Hide and Seek multiplayer game',
     tech: ['Cloud Run', 'Remix', 'Node.js', 'Express', 'WebSockets', 'Canvas'],
+    builtWith: 'Google AI Studio',
     github: 'https://github.com/lojul/remix-shadow-seekers',
     id: 'hide-seek',
   },
@@ -84,6 +89,7 @@ export const PROJECTS: Project[] = [
     image: '/featured/placeholder-hero.svg',
     imageAlt: 'Pokemon database search and info',
     tech: ['Vercel', 'React', 'Next.js', 'Tailwind', 'PokeAPI'],
+    builtWith: 'Cursor',
     github: 'https://github.com/lojul/poke-palace-of-wonder',
     id: 'pokemon',
   },
@@ -94,6 +100,7 @@ export const PROJECTS: Project[] = [
     image: '/featured/placeholder-hero.svg',
     imageAlt: 'MiniGames collection',
     tech: ['Vercel', 'React', 'Next.js', 'Canvas', 'Phaser.js'],
+    builtWith: 'Claude',
     github: 'https://github.com/lojul/minigame-lilac',
     id: 'minigames',
   },
@@ -104,6 +111,7 @@ export const PROJECTS: Project[] = [
     image: '/featured/placeholder-hero.svg',
     imageAlt: 'Table-Tennis scorekeeper',
     tech: ['Vercel', 'PWA'],
+    builtWith: 'Cursor',
     github: 'https://github.com/lojul/ping-pong-pad',
     id: 'table-tennis',
   },
