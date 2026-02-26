@@ -1,19 +1,13 @@
+import createMDX from '@next/mdx';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "opengraph.githubassets.com"
-      },
-      {
-        protocol: "https",
-        hostname: "avatars.githubusercontent.com"
-      }
-    ]
-  }
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+});
 
+export default withMDX(nextConfig);

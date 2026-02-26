@@ -1,232 +1,190 @@
-import { Github, Mail, Sparkles } from "lucide-react";
+'use client'
 
-import { FeaturedProjectCard } from "@/components/FeaturedProjectCard";
-import { ProjectCard } from "@/components/ProjectCard";
-import { Button } from "@/components/ui/button";
-import { featuredProjects } from "@/lib/featuredProjects";
-import { fetchGitHubRepos } from "@/lib/github";
+import { motion } from 'motion/react'
+import Image from 'next/image'
+import { Spotlight } from '@/components/ui/spotlight'
+import { Magnetic } from '@/components/ui/magnetic'
+import Link from 'next/link'
+import {
+  HERO_BIO,
+  HERO_TITLE,
+  PROJECTS,
+  SITE_NAME,
+  EMAIL,
+  SOCIAL_LINKS,
+} from './data'
 
-export const revalidate = 3600;
-
-function featuredProjectsSchema() {
-  const baseUrl = "https://lojul.dev";
-  return {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Recent Work",
-    description: "Featured projects by lojul",
-    numberOfItems: featuredProjects.length,
-    itemListElement: featuredProjects.map((p, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      item: {
-        "@type": "CreativeWork",
-        name: p.name,
-        description: p.description,
-        url: p.demoUrl,
-        image: baseUrl + p.image,
-        author: { "@type": "Person", name: "lojul" },
-        ...(p.githubUrl && { codeRepository: p.githubUrl }),
-      },
-    })),
-  };
+const VARIANTS_CONTAINER = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12 },
+  },
 }
 
-export default async function HomePage() {
-  const repos = await fetchGitHubRepos();
+const VARIANTS_SECTION = {
+  hidden: { opacity: 0, y: 20, filter: 'blur(8px)' },
+  visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+}
 
+const TRANSITION_SECTION = { duration: 0.3 }
+
+function MagneticSocialLink({
+  children,
+  link,
+}: {
+  children: React.ReactNode
+  link: string
+}) {
   return (
-    <main className="scroll-smooth bg-background">
-      <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-16 pt-10 sm:px-6 md:px-8 md:pt-16">
-        <header className="flex flex-col gap-10 pb-12 pt-4 md:flex-row md:items-center md:justify-between md:gap-16 md:pb-16">
-          <div className="space-y-6 md:max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-slate-600 shadow-sm">
-              <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
-              <span>AI vibe coding showcase</span>
-            </div>
-
-            <div className="space-y-4">
-              <h1 className="text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl md:text-5xl">
-                Where{" "}
-                <span className="bg-gradient-to-r from-cyan-400 via-sky-400 to-emerald-300 bg-clip-text text-transparent">
-                  AI instincts
-                </span>{" "}
-                meet{" "}
-                <span className="bg-gradient-to-r from-rose-400 to-amber-300 bg-clip-text text-transparent">
-                  vibe-coded builds
-                </span>
-                .
-              </h1>
-
-              <p className="max-w-xl text-balance text-sm text-slate-600 sm:text-base">
-                A living portfolio of experiments, tools, and prototypes by{" "}
-                <span className="font-semibold text-slate-900">lojul</span> – exploring
-                AI-assisted development, playful interfaces, and fast, expressive
-                shipping with Next.js and friends.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <a
-                  href="https://github.com/lojul"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Open lojul on GitHub"
-                >
-                  <Github className="mr-2 h-4 w-4" />
-                  View GitHub
-                </a>
-              </Button>
-
-              <Button asChild variant="outline" size="lg">
-                <a href="#featured">Browse projects</a>
-              </Button>
-            </div>
-          </div>
-
-          <div className="relative mt-4 w-full max-w-md self-stretch md:mt-0 md:self-center">
-            <div className="pointer-events-none absolute -left-10 -top-10 h-40 w-40 rounded-full bg-cyan-100/40 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-emerald-100/40 blur-3xl" />
-
-            <div className="glass relative z-10 h-full rounded-3xl p-5 shadow-lg">
-              <div className="mb-4 flex items-center justify-between text-xs text-slate-500">
-                <span className="inline-flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.7)]" />
-                  AI build session
-                </span>
-                <span>lojul / vibe-coding</span>
-              </div>
-
-              <div className="space-y-3 text-xs font-mono text-slate-700">
-                <p>
-                  <span className="text-cyan-300">const</span>{" "}
-                  <span className="text-emerald-300">vibe</span> ={" "}
-                  <span className="text-amber-200">&quot;ship it&quot;</span>;
-                </p>
-                <p>
-                  <span className="text-cyan-300">const</span>{" "}
-                  <span className="text-emerald-300">stack</span> = [
-                  <span className="text-sky-300">&quot;Next.js&quot;</span>,{" "}
-                  <span className="text-sky-300">&quot;Tailwind&quot;</span>,{" "}
-                  <span className="text-sky-300">&quot;AI&quot;</span>];
-                </p>
-                <p>
-                  <span className="text-cyan-300">const</span>{" "}
-                  <span className="text-emerald-300">mode</span> = (
-                  <span className="text-sky-300">intuition</span> +
-                  <span className="text-sky-300">exploration</span>) &gt;
-                  <span className="text-amber-200">perfectionism</span>;
-                </p>
-                <p className="pt-2 text-slate-500">
-                  // scroll to see what happens when you let the AI cook and follow the
-                  vibes.
-                </p>
-              </div>
-            </div>
-          </div>
-        </header>
-
-        <section id="featured" className="space-y-6 pb-12" aria-labelledby="featured-heading">
-          <div>
-            <h2 id="featured-heading" className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
-              Featured projects
-            </h2>
-            <p className="mt-1 text-sm text-slate-600">
-              Recent work — live demos, tech stack, and screenshots.
-            </p>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredProjects.map((project, index) => (
-              <FeaturedProjectCard key={project.id} project={project} index={index} />
-            ))}
-          </div>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(featuredProjectsSchema()) }}
+    <Magnetic springOptions={{ bounce: 0 }} intensity={0.3}>
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative inline-flex shrink-0 items-center gap-[1px] rounded-full bg-zinc-100 px-2.5 py-1 text-sm text-black transition-colors duration-200 hover:bg-zinc-950 hover:text-zinc-50 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
+      >
+        {children}
+        <svg
+          width="15"
+          height="15"
+          viewBox="0 0 15 15"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-3 w-3"
+        >
+          <path
+            d="M3.64645 11.3536C3.45118 11.1583 3.45118 10.8417 3.64645 10.6465L10.2929 4L6 4C5.72386 4 5.5 3.77614 5.5 3.5C5.5 3.22386 5.72386 3 6 3L11.5 3C11.6326 3 11.7598 3.05268 11.8536 3.14645C11.9473 3.24022 12 3.36739 12 3.5L12 9.00001C12 9.27615 11.7761 9.50001 11.5 9.50001C11.2239 9.50001 11 9.27615 11 9.00001V4.70711L4.35355 11.3536C4.15829 11.5488 3.84171 11.5488 3.64645 11.3536Z"
+            fill="currentColor"
+            fillRule="evenodd"
+            clipRule="evenodd"
           />
-        </section>
-
-        <section id="projects" className="space-y-6 pb-10">
-          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
-                More from GitHub
-              </h2>
-              <p className="mt-1 text-sm text-slate-600">
-                Pulled live from{" "}
-                <a
-                  href="https://github.com/lojul"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="underline decoration-dotted underline-offset-4 hover:text-cyan-300"
-                >
-                  GitHub
-                </a>{" "}
-                – sorted by stars and recent activity.
-              </p>
-            </div>
-
-            <p className="text-xs text-slate-500">
-              Using GitHub Open Graph images as project previews. You can swap in
-              custom screenshots or demo URLs per repo later.
-            </p>
-          </div>
-
-          {repos.length === 0 ? (
-            <div className="mt-6 rounded-xl border border-dashed border-slate-200 bg-slate-50 p-6 text-sm text-slate-600">
-              <p className="font-medium text-slate-900">No projects loaded yet.</p>
-              <p className="mt-1 text-slate-500">
-                This can happen if GitHub&apos;s unauthenticated rate limit is
-                exhausted. Try refreshing in a bit, or configure a GitHub token on the
-                server for heavier traffic.
-              </p>
-            </div>
-          ) : (
-            <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {repos.map((repo, index) => (
-                <ProjectCard key={repo.id} repo={repo} index={index} />
-              ))}
-            </div>
-          )}
-        </section>
-
-        <footer className="mt-auto border-t border-slate-200 pt-6 text-xs text-slate-500 sm:text-sm">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <p>
-              Built with Next.js, Tailwind, Framer Motion, and live GitHub data. Curated
-              by <span className="font-medium text-slate-900">lojul</span>.
-            </p>
-            <div className="flex flex-wrap items-center gap-3">
-              <a
-                href="https://github.com/lojul"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-sky-600"
-              >
-                <Github className="h-3.5 w-3.5" />
-                GitHub
-              </a>
-              <a
-                href="https://www.linkedin.com/in/"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-sky-600"
-              >
-                LinkedIn
-              </a>
-              <a
-                href="mailto:hello@lojul.dev"
-                className="inline-flex items-center gap-1.5 hover:text-sky-600"
-              >
-                <Mail className="h-3.5 w-3.5" />
-                Email
-              </a>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </main>
-  );
+        </svg>
+      </a>
+    </Magnetic>
+  )
 }
 
+export default function Personal() {
+  return (
+    <motion.main
+      className="space-y-24"
+      variants={VARIANTS_CONTAINER}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <p className="text-zinc-600 dark:text-zinc-400">{HERO_BIO}</p>
+      </motion.section>
+
+      <motion.section
+        id="featured"
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+        aria-labelledby="projects-heading"
+      >
+        <h2 id="projects-heading" className="mb-5 text-lg font-medium">
+          Featured Projects
+        </h2>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {PROJECTS.map((project) => (
+            <motion.div
+              key={project.id}
+              className="group relative space-y-2"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: 'spring', bounce: 0, duration: 0.2 }}
+            >
+              <div className="relative aspect-video overflow-hidden rounded-2xl bg-zinc-50/40 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 block"
+                  aria-label={`Open ${project.name} live demo`}
+                >
+                  <Image
+                    src={project.image}
+                    alt={project.imageAlt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                  />
+                </a>
+              </div>
+              <div className="px-1">
+                <a
+                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {project.name}
+                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full" />
+                </a>
+                <p className="mt-1 text-base text-zinc-600 dark:text-zinc-400">
+                  {project.description}
+                </p>
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {project.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full bg-zinc-200/80 px-2 py-0.5 text-xs text-zinc-700 dark:bg-zinc-700/80 dark:text-zinc-300"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-zinc-500 underline-offset-2 hover:underline"
+                  >
+                    Live demo
+                  </a>
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-zinc-500 underline-offset-2 hover:underline"
+                    >
+                      GitHub
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h3 className="mb-5 text-lg font-medium">Connect</h3>
+        <p className="mb-5 text-zinc-600 dark:text-zinc-400">
+          Reach me at{' '}
+          <a
+            className="underline dark:text-zinc-300"
+            href={`mailto:${EMAIL}`}
+          >
+            {EMAIL}
+          </a>
+        </p>
+        <div className="flex items-center justify-start gap-3">
+          {SOCIAL_LINKS.map((link) => (
+            <MagneticSocialLink key={link.label} link={link.link}>
+              {link.label}
+            </MagneticSocialLink>
+          ))}
+        </div>
+      </motion.section>
+    </motion.main>
+  )
+}
