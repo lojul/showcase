@@ -15,7 +15,7 @@ type SocialLink = {
 }
 
 export const SITE_NAME = 'lojul'
-export const HERO_TITLE = 'Full-Stack Developer'
+export const HERO_TITLE = 'vibe coding since 2025'
 export const HERO_BIO =
   'React, Next.js, Tailwind, Node.js, Vercel. Building intuitive web experiences and shipping fast.'
 
@@ -47,6 +47,25 @@ export const PROJECTS: Project[] = [
     tech: ['Vercel', 'React', 'Next.js', 'Tailwind', 'shadcn', 'Postgres', 'Supabase'],
     github: 'https://github.com/lojul/applicant-tracking-three',
     id: 'applicant-tracking',
+  },
+  {
+    name: 'Recruit Website',
+    description:
+      'Job board listing 30+ positions with filters for senior engineering, UX, DevOps, and ML roles.',
+    link: '#',
+    image: '/featured/placeholder-hero.svg',
+    imageAlt: 'Recruit website job board',
+    tech: [
+      'Vercel',
+      'React',
+      'Next.js',
+      'Tailwind',
+      'Server Actions',
+      'Vercel Functions',
+      'Job search UI',
+    ],
+    github: 'https://github.com/lojul/recruit-website',
+    id: 'recruit-website',
   },
   {
     name: 'Hide and Seek Game',
@@ -91,7 +110,6 @@ export const PROJECTS: Project[] = [
 ]
 
 export const SOCIAL_LINKS: SocialLink[] = [
-  { label: 'GitHub', link: 'https://github.com/lojul' },
   { label: 'LinkedIn', link: 'https://www.linkedin.com/in/' },
 ]
 

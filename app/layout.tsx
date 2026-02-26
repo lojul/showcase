@@ -16,20 +16,20 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(WEBSITE_URL),
   alternates: { canonical: '/' },
-  title: { default: `${SITE_NAME} — Full-Stack Developer`, template: `%s | ${SITE_NAME}` },
+  title: { default: `${SITE_NAME} — vibe coding showcase`, template: `%s | ${SITE_NAME}` },
   description:
-    'Portfolio and featured projects. React, Next.js, Tailwind, Node.js, Vercel. Full-stack developer.',
+    'Vibe coding showcase. React, Next.js, Tailwind, Node.js, Vercel. Experiments and prototypes.',
   openGraph: {
-    title: `${SITE_NAME} — Full-Stack Developer`,
-    description: 'Portfolio and featured projects. React, Next.js, Tailwind, Node.js, Vercel.',
+    title: `${SITE_NAME} — vibe coding showcase`,
+    description: 'Vibe coding showcase. React, Next.js, Tailwind, Node.js, Vercel. Experiments and prototypes.',
     url: WEBSITE_URL,
     siteName: SITE_NAME,
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${SITE_NAME} — Full-Stack Developer`,
-    description: 'Portfolio and featured projects.',
+    title: `${SITE_NAME} — vibe coding showcase`,
+    description: 'Vibe coding showcase. Experiments and prototypes.',
   },
 }
 
@@ -51,7 +51,7 @@ export default function RootLayout({
           defaultTheme="system"
         >
           <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-inter-tight)]">
-            <div className="relative mx-auto w-full max-w-screen-sm flex-1 px-4 pt-20">
+            <div className="relative mx-auto w-full max-w-6xl flex-1 px-4 pt-20 sm:px-6 lg:px-8">
               <Header />
               {children}
               <Footer />

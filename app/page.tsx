@@ -86,14 +86,14 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
         aria-labelledby="projects-heading"
       >
-        <h2 id="projects-heading" className="mb-5 text-lg font-medium">
+        <h2 id="projects-heading" className="mb-8 text-xl font-medium sm:text-2xl">
           Featured Projects
         </h2>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {PROJECTS.map((project) => (
             <motion.div
               key={project.id}
-              className="group relative space-y-2"
+              className="group relative space-y-3"
               whileHover={{ scale: 1.02 }}
               transition={{ type: 'spring', bounce: 0, duration: 0.2 }}
             >
@@ -116,7 +116,7 @@ export default function Personal() {
               </div>
               <div className="px-1">
                 <a
-                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
+                  className="group relative inline-block text-lg font-[450] text-zinc-900 dark:text-zinc-50 sm:text-xl"
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -124,38 +124,28 @@ export default function Personal() {
                   {project.name}
                   <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full" />
                 </a>
-                <p className="mt-1 text-base text-zinc-600 dark:text-zinc-400">
+                <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400 sm:text-lg">
                   {project.description}
                 </p>
-                <div className="mt-2 flex flex-wrap gap-1.5">
+                <div className="mt-3 flex flex-wrap gap-2">
                   {project.tech.map((t) => (
                     <span
                       key={t}
-                      className="rounded-full bg-zinc-200/80 px-2 py-0.5 text-xs text-zinc-700 dark:bg-zinc-700/80 dark:text-zinc-300"
+                      className="rounded-full bg-zinc-200/80 px-2.5 py-1 text-xs text-zinc-700 dark:bg-zinc-700/80 dark:text-zinc-300 sm:text-sm"
                     >
                       {t}
                     </span>
                   ))}
                 </div>
-                <div className="mt-2 flex flex-wrap gap-2">
+                <div className="mt-3 flex flex-wrap gap-3 text-sm">
                   <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-zinc-500 underline-offset-2 hover:underline"
+                    className="text-zinc-500 underline-offset-2 hover:underline"
                   >
                     Live demo
                   </a>
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-zinc-500 underline-offset-2 hover:underline"
-                    >
-                      GitHub
-                    </a>
-                  )}
                 </div>
               </div>
             </motion.div>
