@@ -1,10 +1,36 @@
 import { Github, Mail, Sparkles } from "lucide-react";
 
+import { FeaturedProjectCard } from "@/components/FeaturedProjectCard";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Button } from "@/components/ui/button";
+import { featuredProjects } from "@/lib/featuredProjects";
 import { fetchGitHubRepos } from "@/lib/github";
 
 export const revalidate = 3600;
+
+function featuredProjectsSchema() {
+  const baseUrl = "https://lojul.dev";
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Recent Work",
+    description: "Featured projects by lojul",
+    numberOfItems: featuredProjects.length,
+    itemListElement: featuredProjects.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "CreativeWork",
+        name: p.name,
+        description: p.description,
+        url: p.demoUrl,
+        image: baseUrl + p.image,
+        author: { "@type": "Person", name: "lojul" },
+        ...(p.githubUrl && { codeRepository: p.githubUrl }),
+      },
+    })),
+  };
+}
 
 export default async function HomePage() {
   const repos = await fetchGitHubRepos();
@@ -54,7 +80,7 @@ export default async function HomePage() {
               </Button>
 
               <Button asChild variant="outline" size="lg">
-                <a href="#projects">Browse projects</a>
+                <a href="#featured">Browse projects</a>
               </Button>
             </div>
           </div>
@@ -101,11 +127,31 @@ export default async function HomePage() {
           </div>
         </header>
 
+        <section id="featured" className="space-y-6 pb-12" aria-labelledby="featured-heading">
+          <div>
+            <h2 id="featured-heading" className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
+              Featured projects
+            </h2>
+            <p className="mt-1 text-sm text-slate-600">
+              Recent work — live demos, tech stack, and screenshots.
+            </p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredProjects.map((project, index) => (
+              <FeaturedProjectCard key={project.id} project={project} index={index} />
+            ))}
+          </div>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(featuredProjectsSchema()) }}
+          />
+        </section>
+
         <section id="projects" className="space-y-6 pb-10">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
-                Featured projects
+                More from GitHub
               </h2>
               <p className="mt-1 text-sm text-slate-600">
                 Pulled live from{" "}

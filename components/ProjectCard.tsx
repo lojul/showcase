@@ -16,10 +16,10 @@ import { Badge } from "@/components/ui/badge";
 import {
   GitHubRepo,
   getLanguageColor,
-  getLiveDemoUrl,
-  getOgImageForRepo
+  getLanguageColor as _unusedGetLanguageColor
 } from "@/lib/github";
 import { cn } from "@/lib/utils";
+import { getProjectDemoUrl, getProjectImageForRepo } from "@/lib/projectConfig";
 
 type ProjectCardProps = {
   repo: GitHubRepo;
@@ -28,8 +28,8 @@ type ProjectCardProps = {
 
 export function ProjectCard({ repo, index }: ProjectCardProps) {
   const languageColor = getLanguageColor(repo.language);
-  const liveDemoUrl = getLiveDemoUrl(repo);
-  const ogImage = getOgImageForRepo(repo);
+  const liveDemoUrl = getProjectDemoUrl(repo);
+  const projectImage = getProjectImageForRepo(repo);
 
   const lastUpdated = new Date(repo.updated_at).toLocaleDateString(undefined, {
     year: "numeric",
@@ -58,7 +58,7 @@ export function ProjectCard({ repo, index }: ProjectCardProps) {
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-cyan-200/20 via-sky-200/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-80" />
 
           <Image
-            src={ogImage}
+            src={projectImage}
             alt={repo.name}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
