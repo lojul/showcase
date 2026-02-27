@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'motion/react'
 import Image from 'next/image'
 import { Spotlight } from '@/components/ui/spotlight'
@@ -13,6 +14,8 @@ import {
   EMAIL,
   SOCIAL_LINKS,
 } from './data'
+import { ProjectGallery } from '@/components/project-gallery'
+import type { Project } from './data'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -66,6 +69,8 @@ function MagneticSocialLink({
 }
 
 export default function Personal() {
+  const [galleryProject, setGalleryProject] = useState<Project | null>(null)
+
   return (
     <motion.main
       className="space-y-20"
@@ -91,12 +96,11 @@ export default function Personal() {
               transition={{ type: 'spring', bounce: 0, duration: 0.2 }}
             >
               <div className="relative aspect-video overflow-hidden rounded-2xl bg-zinc-50/40 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute inset-0 block"
-                  aria-label={`Open ${project.name} live demo`}
+                <button
+                  type="button"
+                  onClick={() => setGalleryProject(project)}
+                  className="absolute inset-0 block w-full cursor-zoom-in text-left"
+                  aria-label={`View gallery for ${project.name}`}
                 >
                   <Image
                     src={project.image}
@@ -105,7 +109,7 @@ export default function Personal() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
                   />
-                </a>
+                </button>
               </div>
               <div className="px-1">
                 <a
@@ -148,6 +152,8 @@ export default function Personal() {
           ))}
         </div>
       </motion.section>
+
+      <ProjectGallery project={galleryProject} onClose={() => setGalleryProject(null)} />
 
       <motion.section
         variants={VARIANTS_SECTION}

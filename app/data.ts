@@ -1,9 +1,11 @@
-type Project = {
+export type Project = {
   name: string
   description: string
   link: string
   image: string
   imageAlt: string
+  /** All images for the project gallery (defaults to [image] if omitted) */
+  images?: string[]
   tech: string[]
   builtWith: string
   github?: string
@@ -35,6 +37,17 @@ export const PROJECTS: Project[] = [
     link: 'https://quick-poll-lightstreamer-production.up.railway.app',
     image: '/featured/quick-poll/page1-part1-quick_poll_lightstreamer_produ.png',
     imageAlt: 'Quick Poll Lightstreamer real-time polling app',
+    images: [
+      '/featured/quick-poll/page1-part1-quick_poll_lightstreamer_produ.png',
+      '/featured/quick-poll/page1-part2-quick_poll_lightstreamer_produ.png',
+      '/featured/quick-poll/page1-part3-quick_poll_lightstreamer_produ.png',
+      '/featured/quick-poll/page1-part4-quick_poll_lightstreamer_produ.png',
+      '/featured/quick-poll/page1-part5-quick_poll_lightstreamer_produ.png',
+      '/featured/quick-poll/page1-part6-quick_poll_lightstreamer_produ.png',
+      '/featured/quick-poll/page1-part7-quick_poll_lightstreamer_produ.png',
+      '/featured/quick-poll/page1-part8-quick_poll_lightstreamer_produ.png',
+      '/featured/quick-poll/page1-part9-quick_poll_lightstreamer_produ.png',
+    ],
     tech: ['Railway', 'React', 'Next.js', 'Node.js', 'Lightstreamer', 'Postgres', 'Docker'],
     builtWith: 'Claude',
     github: 'https://github.com/lojul/quick-poll-lightstreamer',
@@ -56,8 +69,17 @@ export const PROJECTS: Project[] = [
     description:
       'Job board listing 30+ positions with filters for senior engineering, UX, DevOps, and ML roles.',
     link: '#',
-    image: '/featured/placeholder-hero.svg',
+    image: '/featured/recruitwebsite/page1-part1-recruitwebsite_vercel_app.png',
     imageAlt: 'Recruit website job board',
+    images: [
+      '/featured/recruitwebsite/page1-part1-recruitwebsite_vercel_app.png',
+      '/featured/recruitwebsite/page1-part2-recruitwebsite_vercel_app.png',
+      '/featured/recruitwebsite/page1-part5-recruitwebsite_vercel_app.png',
+      '/featured/recruitwebsite/page2-part1-recruitwebsite_vercel_app_.png',
+      '/featured/recruitwebsite/page2-part3-recruitwebsite_vercel_app_.png',
+      '/featured/recruitwebsite/page3-part1-recruitwebsite_vercel_app_empl.png',
+      '/featured/recruitwebsite/page3-part3-recruitwebsite_vercel_app_empl.png',
+    ],
     tech: [
       'Vercel',
       'React',
@@ -88,6 +110,13 @@ export const PROJECTS: Project[] = [
     link: 'https://poke-palace-of-wonder.vercel.app',
     image: '/featured/pokewonder/page1-part1-pokewonder_com.png',
     imageAlt: 'Pokemon database search and info',
+    images: [
+      '/featured/pokewonder/page1-part1-pokewonder_com.png',
+      '/featured/pokewonder/page1-part2-pokewonder_com.png',
+      '/featured/pokewonder/page1-part3-pokewonder_com.png',
+      '/featured/pokewonder/page1-part4-pokewonder_com.png',
+      '/featured/pokewonder/page1-part5-pokewonder_com.png',
+    ],
     tech: ['Vercel', 'React', 'Next.js', 'Tailwind', 'PokeAPI'],
     builtWith: 'Cursor',
     github: 'https://github.com/lojul/poke-palace-of-wonder',
