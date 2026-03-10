@@ -73,7 +73,7 @@ export default function Personal() {
 
   return (
     <motion.main
-      className="space-y-20"
+      className="space-y-16 sm:space-y-20"
       variants={VARIANTS_CONTAINER}
       initial="hidden"
       animate="visible"
@@ -87,15 +87,15 @@ export default function Personal() {
         <h2 id="projects-heading" className="mb-8 text-xl font-medium sm:text-2xl">
           Featured Projects
         </h2>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
           {PROJECTS.map((project) => (
             <motion.div
               key={project.id}
-              className="group relative space-y-3"
+              className="group relative space-y-2.5"
               whileHover={{ scale: 1.02 }}
               transition={{ type: 'spring', bounce: 0, duration: 0.2 }}
             >
-              <div className="relative aspect-video overflow-hidden rounded-2xl bg-zinc-50/40 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+              <div className="relative aspect-video overflow-hidden rounded-2xl bg-zinc-50/40 ring-1 ring-zinc-200/50 ring-inset shadow-sm shadow-zinc-200/70 transition-shadow duration-200 group-hover:shadow-lg group-hover:shadow-zinc-300/80 dark:bg-zinc-950/40 dark:ring-zinc-800/50 dark:shadow-black/40 dark:group-hover:shadow-black/70">
                 <button
                   type="button"
                   onClick={() => setGalleryProject(project)}
@@ -112,19 +112,24 @@ export default function Personal() {
                 </button>
               </div>
               <div className="px-1">
-                <a
-                  className="group relative inline-block text-lg font-[450] text-zinc-900 dark:text-zinc-50 sm:text-xl"
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full" />
-                </a>
-                <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400 sm:text-lg">
+                <div className="flex items-center justify-between gap-2">
+                  <a
+                    className="group relative inline-block text-lg font-[450] text-zinc-900 dark:text-zinc-50 sm:text-xl"
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {project.name}
+                    <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full" />
+                  </a>
+                  <span className="shrink-0 rounded-full bg-zinc-100 px-2 py-1 text-[10px] font-medium uppercase tracking-wide text-zinc-500 dark:bg-zinc-800 dark:text-zinc-200">
+                    {project.builtWith}
+                  </span>
+                </div>
+                <p className="mt-1.5 text-base text-zinc-600 dark:text-zinc-400 sm:text-lg">
                   {project.description}
                 </p>
-                <div className="mt-3 flex flex-wrap gap-2">
+                <div className="mt-2.5 flex flex-wrap gap-2">
                   {project.tech.map((t) => (
                     <span
                       key={t}
@@ -133,19 +138,6 @@ export default function Personal() {
                       {t}
                     </span>
                   ))}
-                </div>
-                <p className="mt-2 text-xs uppercase tracking-wide text-zinc-400">
-                  Built with {project.builtWith}
-                </p>
-                <div className="mt-3 flex flex-wrap gap-3 text-sm">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-zinc-500 underline-offset-2 hover:underline"
-                  >
-                    Live demo
-                  </a>
                 </div>
               </div>
             </motion.div>

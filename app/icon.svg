@@ -1,0 +1,37 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="60" x2="56" y2="4" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#020617" />
+      <stop offset="1" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="accent" x1="20" y1="50" x2="48" y2="16" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22C55E" />
+      <stop offset="1" stop-color="#38BDF8" />
+    </linearGradient>
+  </defs>
+
+  <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#bg)" />
+  <rect x="4" y="4" width="56" height="56" rx="16" stroke="#020617" stroke-opacity="0.4" />
+
+  <!-- Left bracket -->
+  <path
+    d="M22 20L18 24V40L22 44"
+    stroke="url(#accent)"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Right bracket -->
+  <path
+    d="M42 20L46 24V40L42 44"
+    stroke="url(#accent)"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Center spark / cursor-style bar -->
+  <rect x="29.5" y="22" width="3" height="20" rx="1.5" fill="url(#accent)" />
+</svg>
+

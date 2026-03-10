@@ -32,6 +32,21 @@ export const SKILLS = [
 
 export const PROJECTS: Project[] = [
   {
+    name: 'SiteSnap',
+    description: 'Website screenshot crawler with AI-powered summaries and ZIP export.',
+    link: 'https://sitesnap-7lyi.onrender.com',
+    image: '/featured/sitesnap/page1-part1-sitesnap_7lyi_onrender_com_.png',
+    imageAlt: 'SiteSnap website screenshot tool',
+    images: [
+      '/featured/sitesnap/page1-part1-sitesnap_7lyi_onrender_com_.png',
+      '/featured/sitesnap/page1-part2-sitesnap_7lyi_onrender_com_.png',
+    ],
+    tech: ['Render', 'React', 'Vite', 'Express', 'Puppeteer', 'DeepSeek', 'Docker'],
+    builtWith: 'Google AI Studio',
+    github: 'https://github.com/lojul/sitesnap',
+    id: 'sitesnap',
+  },
+  {
     name: 'Quick Poll Lightstreamer',
     description: 'Real-time polling app with Lightstreamer for live vote streaming.',
     link: 'https://quick-poll-lightstreamer-production.up.railway.app',
@@ -57,8 +72,12 @@ export const PROJECTS: Project[] = [
     name: 'Applicant Tracking',
     description: 'ATS dashboard for managing candidates, jobs, and statuses (AI-assisted).',
     link: 'https://applicant-tracking-three.vercel.app/',
-    image: '/featured/placeholder-hero.svg',
+    image: '/featured/applicant_tracking/page2-part1-applicant_tracking_three_verce.png',
     imageAlt: 'Applicant Tracking System dashboard',
+    images: [
+      '/featured/applicant_tracking/page2-part1-applicant_tracking_three_verce.png',
+      '/featured/applicant_tracking/page3-part1-applicant_tracking_three_verce.png',
+    ],
     tech: ['Vercel', 'React', 'Next.js', 'Tailwind', 'shadcn', 'Postgres', 'Supabase'],
     builtWith: 'Claude',
     github: 'https://github.com/lojul/applicant-tracking-three',
@@ -97,7 +116,7 @@ export const PROJECTS: Project[] = [
     name: 'Hide and Seek Game',
     description: 'Multiplayer hide-and-seek browser game.',
     link: 'https://remix-shadow-seekers-257320149663.us-west1.run.app',
-    image: '/featured/placeholder-hero.svg',
+    image: '/featured/hide-and-seek/page1-part1-remix_shadow_seekers_257320149.png',
     imageAlt: 'Hide and Seek multiplayer game',
     tech: ['Cloud Run', 'Remix', 'Node.js', 'Express', 'WebSockets', 'Canvas'],
     builtWith: 'Google AI Studio',
@@ -126,7 +145,7 @@ export const PROJECTS: Project[] = [
     name: 'MiniGames',
     description: 'Collection of browser mini-games.',
     link: 'https://minigame-lilac.vercel.app',
-    image: '/featured/placeholder-hero.svg',
+    image: '/featured/minigame/hero-Screenshot 2026-02-27 at 10.16.38 AM.png',
     imageAlt: 'MiniGames collection',
     tech: ['Vercel', 'React', 'Next.js', 'Canvas', 'Phaser.js'],
     builtWith: 'Claude',
@@ -136,8 +155,8 @@ export const PROJECTS: Project[] = [
   {
     name: 'Table-Tennis Score',
     description: 'Ping-pong scorekeeper PWA.',
-    link: 'https://vercel.com/lojuls-projects/ping-pong-pad',
-    image: '/featured/placeholder-hero.svg',
+    link: 'https://ping-pong-pad.vercel.app',
+    image: '/featured/ping-pong/hero-page1-part1-ping_pong_pad_vercel_app.png',
     imageAlt: 'Table-Tennis scorekeeper',
     tech: ['Vercel', 'PWA'],
     builtWith: 'Cursor',
@@ -146,8 +165,6 @@ export const PROJECTS: Project[] = [
   },
 ]
 
-export const SOCIAL_LINKS: SocialLink[] = [
-  { label: 'LinkedIn', link: 'https://www.linkedin.com/in/' },
-]
+export const SOCIAL_LINKS: SocialLink[] = []
 
 export const EMAIL = 'hello@lojul.dev'

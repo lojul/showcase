@@ -14,14 +14,21 @@ type ProjectGalleryProps = {
   onClose: () => void
 }
 
-function getImages(project: Project | null): string[] {
+function getFallbackImages(project: Project | null): string[] {
   if (!project) return []
   return project.images && project.images.length > 0 ? project.images : [project.image]
 }
 
+function getFeaturedFolderFromImage(image: string): string | null {
+  // "/featured/<folder>/<file>"
+  const match = image.match(/^\/featured\/([^/]+)\//)
+  return match?.[1] ?? null
+}
+
 export function ProjectGallery({ project, onClose }: ProjectGalleryProps) {
-  const images = getImages(project)
+  const [images, setImages] = useState<string[]>(() => getFallbackImages(project))
   const [index, setIndex] = useState(0)
+  const [loading, setLoading] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
   const goPrev = useCallback(() => {
@@ -36,6 +43,44 @@ export function ProjectGallery({ project, onClose }: ProjectGalleryProps) {
     if (!project) return
     setIndex(0)
   }, [project])
+
+  useEffect(() => {
+    let cancelled = false
+    async function load() {
+      if (!project) return
+
+      const folder = getFeaturedFolderFromImage(project.image)
+      // If it's still the placeholder (no subfolder), just use whatever the data has.
+      if (!folder) {
+        setImages(getFallbackImages(project))
+        return
+      }
+
+      setLoading(true)
+      try {
+        const res = await fetch(`/api/gallery?folder=${encodeURIComponent(folder)}`)
+        const json = (await res.json()) as { images?: string[] }
+        const nextImages =
+          Array.isArray(json.images) && json.images.length > 0
+            ? json.images
+            : getFallbackImages(project)
+        if (!cancelled) setImages(nextImages)
+      } catch {
+        if (!cancelled) setImages(getFallbackImages(project))
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+
+    void load()
+    return () => {
+      cancelled = true
+    }
+  }, [project])
+
+  useEffect(() => {
+    setIndex((i) => Math.min(i, Math.max(0, images.length - 1)))
+  }, [images.length])
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -58,8 +103,10 @@ export function ProjectGallery({ project, onClose }: ProjectGalleryProps) {
   })
 
   if (!project) return null
+  if (!images || images.length === 0) return null
 
-  const currentSrc = images[index]
+  const safeIndex = Math.min(index, images.length - 1)
+  const currentSrc = images[safeIndex]
 
   return createPortal(
     <AnimatePresence>
@@ -73,17 +120,26 @@ export function ProjectGallery({ project, onClose }: ProjectGalleryProps) {
           ref={containerRef}
           className="relative flex max-h-[90vh] w-full max-w-5xl flex-col items-center gap-4 px-4 py-6"
         >
-          <div className="flex w-full items-center justify-between gap-4">
-            <h3 className="text-lg font-medium text-white sm:text-xl">
-              {project.name} — {index + 1} / {images.length}
-            </h3>
+          <div className="flex w-full items-center justify-between gap-3">
+            <div className="flex flex-col gap-1">
+              <h3 className="text-base font-medium text-white sm:text-lg">
+                {project.name}
+              </h3>
+              <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-2.5 py-1 text-xs font-medium text-white/90">
+                <span className="text-[11px] uppercase tracking-wide text-white/60">
+                  Image
+                </span>
+                {safeIndex + 1} / {images.length}
+              </span>
+            </div>
             <button
               type="button"
               onClick={onClose}
-              className="rounded-full p-2 text-white/90 transition hover:bg-white/10 hover:text-white"
+              className="inline-flex items-center rounded-full px-3 py-2.5 text-white/90 transition hover:bg-white/10 hover:text-white"
               aria-label="Close gallery"
             >
-              <XIcon className="h-6 w-6" />
+              <XIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+              <span className="ml-1 text-xs sm:hidden">Close</span>
             </button>
           </div>
 
@@ -107,14 +163,20 @@ export function ProjectGallery({ project, onClose }: ProjectGalleryProps) {
               transition={{ duration: 0.2 }}
               className="relative max-h-[70vh] w-full overflow-hidden rounded-xl bg-zinc-900"
             >
-              <Image
-                src={currentSrc}
-                alt={`${project.imageAlt} — image ${index + 1}`}
-                width={1200}
-                height={675}
-                className="h-auto max-h-[70vh] w-full object-contain"
-                unoptimized={currentSrc.endsWith('.svg')}
-              />
+              {loading && images.length <= 1 ? (
+                <div className="flex h-[60vh] w-full items-center justify-center text-sm text-white/70">
+                  Loading…
+                </div>
+              ) : (
+                <Image
+                  src={currentSrc}
+                  alt={`${project.imageAlt} — image ${index + 1}`}
+                  width={1200}
+                  height={675}
+                  className="h-auto max-h-[70vh] w-full object-contain"
+                  unoptimized={currentSrc.endsWith('.svg')}
+                />
+              )}
             </motion.div>
 
             {images.length > 1 && (
