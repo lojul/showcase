@@ -32,6 +32,16 @@ export const SKILLS = [
 
 export const PROJECTS: Project[] = [
   {
+    name: 'Mahjong Score Calculator',
+    description: 'Cantonese/Taiwan Mahjong scoring app with AI-powered tile recognition via camera.',
+    link: 'https://dist-lake-eta-93.vercel.app',
+    image: '/featured/mahjong-scorer/hero.png',
+    imageAlt: 'Cantonese Mahjong Score Calculator',
+    tech: ['Vercel', 'React', 'TypeScript', 'Vite', 'Tailwind', 'Framer Motion', 'DeepSeek', 'Capacitor'],
+    builtWith: 'Google AI Studio',
+    id: 'mahjong-scorer',
+  },
+  {
     name: 'SiteSnap',
     description: 'Website screenshot crawler with AI-powered summaries and ZIP export.',
     link: 'https://sitesnap-7lyi.onrender.com',
