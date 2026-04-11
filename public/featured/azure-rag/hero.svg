@@ -1,0 +1,22 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grad2)"/>
+  <text x="50%" y="35%" font-size="64" font-weight="bold" fill="white" text-anchor="middle" font-family="Arial, sans-serif">
+    Azure AI Search
+  </text>
+  <text x="50%" y="48%" font-size="20" fill="rgba(255,255,255,0.9)" text-anchor="middle" font-family="Arial, sans-serif">
+    Retrieval-Augmented Generation
+  </text>
+  <text x="50%" y="60%" font-size="32" font-weight="600" fill="white" text-anchor="middle" font-family="Arial, sans-serif">
+    RAG System
+  </text>
+  <rect x="100" y="500" width="1000" height="2" fill="rgba(255,255,255,0.3)"/>
+  <text x="50%" y="600" font-size="16" fill="rgba(255,255,255,0.6)" text-anchor="middle" font-family="Arial, sans-serif">
+    Document Processing • AI-Powered Search • n8n Workflows
+  </text>
+</svg>

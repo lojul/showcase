@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(unzip:*)",
+      "Bash(vercel:*)",
+      "Bash(git -C /Users/kincheonglau/Cursor/showcase status:*)",
+      "Bash(git -C /Users/kincheonglau/Cursor/showcase diff)",
+      "Bash(git -C /Users/kincheonglau/Cursor/showcase log --oneline -5)",
+      "Bash(git -C /Users/kincheonglau/Cursor/showcase add app/data.ts app/page.tsx components/project-gallery.tsx app/api/ app/icon.svg public/featured/applicant_tracking/ public/featured/hide-and-seek/ public/featured/minigame/ public/featured/ping-pong/ public/featured/sitesnap/)",
+      "Bash(git -C /Users/kincheonglau/Cursor/showcase commit -m \"$\\(cat <<''EOF''\nAdd SiteSnap project and update featured images\n\nAdd SiteSnap screenshot crawler as first featured project with images.\nAlso includes images for applicant tracking, hide-and-seek, minigames,\nand ping-pong projects. Adds gallery API endpoint and icon.\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C /Users/kincheonglau/Cursor/showcase push)",
+      "Bash(git -C /Users/kincheonglau/Cursor/showcase remote -v)",
+      "Bash(git -C /Users/kincheonglau/Cursor/showcase push origin master)",
+      "Bash(git -C /Users/kincheonglau/Cursor/showcase config http.postBuffer 524288000)",
+      "WebFetch(domain:dist-lake-eta-93.vercel.app)",
+      "WebFetch(domain:sitesnap-7lyi.onrender.com)",
+      "Bash(npm install:*)",
+      "Bash(node -e:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}

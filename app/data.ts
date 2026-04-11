@@ -32,6 +32,38 @@ export const SKILLS = [
 
 export const PROJECTS: Project[] = [
   {
+    name: 'CoWorkspace',
+    description: 'Property listing platform with gallery, listing details, enquiry forms, and maps integration.',
+    link: 'https://coworkspace-main-87wg7djy7-lojuls-projects.vercel.app',
+    image: '/featured/coworkspace/hero.svg',
+    imageAlt: 'CoWorkspace property listing platform',
+    tech: ['Lovable', 'React', 'Vite', 'Tailwind', 'shadcn', 'TypeScript'],
+    builtWith: 'Lovable',
+    github: 'https://github.com/lojul/coworkspace-main',
+    id: 'coworkspace',
+  },
+  {
+    name: 'Azure AI Search RAG',
+    description: 'Retrieval-Augmented Generation system using Azure AI Search and Blob Storage for document processing and property listing analysis.',
+    link: '#',
+    image: '/featured/azure-rag/hero.svg',
+    imageAlt: 'Azure AI Search RAG system',
+    tech: ['Azure', 'Terraform', 'AI Search', 'n8n', 'RAG', 'Document Processing'],
+    builtWith: 'Claude',
+    github: 'https://github.com/lojul/azure-blob',
+    id: 'azure-rag',
+  },
+  {
+    name: 'Odoo ERP System',
+    description: 'Odoo 17 Community Edition installation with custom modules for business operations and HR management.',
+    link: '#',
+    image: '/featured/odoo-erp/hero.svg',
+    imageAlt: 'Odoo 17 ERP System',
+    tech: ['Odoo 17', 'Python', 'PostgreSQL', 'ERP', 'Custom Modules'],
+    builtWith: 'Claude',
+    id: 'odoo-erp',
+  },
+  {
     name: 'Mahjong Score Calculator',
     description: 'Cantonese/Taiwan Mahjong scoring app with AI-powered tile recognition via camera.',
     link: 'https://dist-lake-eta-93.vercel.app',
